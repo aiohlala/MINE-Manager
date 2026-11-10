@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINE - Multiple Interface Next-gen Explorer | MDIE 現代化傳承者</title>
+  <meta name="description" content="致敬經典 MDIE 的新世代超輕量級多視窗與滑鼠手勢檔案總管。支援 Windows 10/11、macOS 與 Linux，免安裝綠色版，記憶體僅佔 25MB，徹底解決特殊編碼當機、HEIC 閃退與 SMB 卡死問題。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-light: #e0f2fe;
+      --accent: #06b6d4;
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header & Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    .btn-nav-download {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      padding: 0.55rem 1.25rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-nav-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(6, 182, 212, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 3rem;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      background: rgba(2, 132, 199, 0.15);
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      border-radius: 9999px;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.25rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span.gradient {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      padding: 0.9rem 2.2rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 4px 20px rgba(2, 132, 199, 0.4);
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(2, 132, 199, 0.6);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #334155;
+      transform: translateY(-2px);
+    }
+
+    /* App UI Mockup Showcase */
+    .mockup-container {
+      max-width: 1140px;
+      margin: 3.5rem auto 5rem;
+      border-radius: 16px;
+      background: #1e293b;
+      border: 1px solid #475569;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mockup-window-header {
+      background: #334155;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #475569;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .window-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .mockup-toolbar {
+      background: #1e293b;
+      padding: 0.5rem 1rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+      font-size: 0.82rem;
+    }
+
+    .mockup-tool-btn {
+      background: #334155;
+      color: #f1f5f9;
+      padding: 0.3rem 0.65rem;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .mockup-tool-btn.active {
+      background: var(--primary);
+    }
+
+    /* Multi-Window MDI Grid Mockup */
+    .mockup-panes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 8px;
+      background: #0f172a;
+      min-height: 420px;
+    }
+
+    .mockup-pane {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .mockup-pane.active-pane {
+      border: 1.5px solid var(--primary);
+      box-shadow: 0 0 16px rgba(2, 132, 199, 0.25);
+    }
+
+    .pane-header {
+      background: #334155;
+      padding: 0.45rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .pane-header.active {
+      background: #0284c7;
+      color: #fff;
+    }
+
+    .pane-addr-bar {
+      padding: 0.35rem 0.6rem;
+      background: #0f172a;
+      display: flex;
+      gap: 0.4rem;
+      border-bottom: 1px solid #334155;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: #94a3b8;
+    }
+
+    .pane-file-list {
+      flex: 1;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .file-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.25rem 0.4rem;
+      border-radius: 4px;
+      color: #cbd5e1;
+    }
+
+    .file-row:hover, .file-row.selected {
+      background: rgba(2, 132, 199, 0.25);
+      color: #fff;
+    }
+
+    .file-name {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .file-size {
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+    }
+
+    /* Gesture Overlay Demo within Mockup */
+    .gesture-indicator-demo {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.92);
+      border: 1.5px solid var(--accent);
+      padding: 0.75rem 1.75rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      backdrop-filter: blur(12px);
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); }
+      50% { box-shadow: 0 0 25px rgba(6, 182, 212, 0.6); }
+    }
+
+    .gesture-arrow {
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .gesture-text {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Problem vs Solution Comparison Table */
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .table-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: #0f172a;
+      padding: 1.1rem 1.25rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+      color: #cbd5e1;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .col-mine {
+      background: rgba(2, 132, 199, 0.1);
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
+    /* Gesture Showcase Grid */
+    .gesture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .gesture-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .gesture-symbol {
+      width: 48px;
+      height: 48px;
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .gesture-desc h4 {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .gesture-desc p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Download Gate Section with PIN */
+    .download-section {
+      background: linear-gradient(180deg, var(--bg-dark), #030712);
+      padding: 6rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .download-box {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3.5rem 2.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      position: relative;
+    }
+
+    /* PIN Lock Overlay Screen */
+    .pin-lock-container {
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    .lock-icon {
+      font-size: 3.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .pin-input-group {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 1.75rem 0;
+    }
+
+    .pin-digit {
+      width: 58px;
+      height: 64px;
+      background: #0f172a;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 2rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--accent);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .pin-digit:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+    }
+
+    .pin-hint {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .pin-hint span.code {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      background: rgba(6, 182, 212, 0.1);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .btn-unlock {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      border: none;
+      padding: 0.85rem 2.5rem;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+      transition: all 0.2s;
+    }
+
+    .btn-unlock:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
+    }
+
+    .shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    /* Unlocked Downloads Display */
+    .download-grid {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.75rem;
+      margin-top: 2rem;
+      text-align: left;
+    }
+
+    .download-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+
+    .download-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .platform-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .platform-icon {
+      font-size: 1.8rem;
+    }
+
+    .platform-header h3 {
+      font-size: 1.15rem;
+      color: #fff;
+    }
+
+    .download-meta {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .btn-download-file {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .btn-download-file:hover {
+      background: var(--primary-hover);
+    }
+
+    .unlocked-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .btn-relock {
+      background: transparent;
+      border: 1px solid #34d399;
+      color: #34d399;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 868px) {
+      .hero h1 { font-size: 2.25rem; }
+      .mockup-panes-grid { grid-template-columns: 1fr; }
+      .download-box { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo-badge">
+        <div class="logo-icon">🗂️</div>
+        <span>MINE</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">核心特色</a>
+        <a href="#comparison" class="nav-link">MDIE 對照</a>
+        <a href="#gestures" class="nav-link">手勢一覽</a>
+        <a href="#download" class="btn-nav-download">立即下載</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-tag">
+      <span>🚀</span> 2026 新世代輕量檔案管理神器・MDIE 現代化傳承者
+    </div>
+    <h1>
+      無限制多視窗並排・<span class="gradient">滑鼠手勢極速操作</span><br>
+      徹底告別系統崩潰與卡死
+    </h1>
+    <p>
+      致敬經典 MDIE（Multiple Document Interface Explorer），採用純 Rust 打造。<br>
+      單一免安裝執行檔僅 5 MB，開 10+ 個子視窗記憶體僅佔 25 MB。徹底解決特殊文字編碼閃退、HEIC 縮圖當機與 SMB 網路磁碟離線凍結。
+    </p>
+    <div class="hero-cta">
+      <a href="#download" class="btn-primary">
+        <span>⚡</span> 前往下載中心 (解鎖下載)
+      </a>
+      <a href="https://github.com/aiohlala/MINE" target="_blank" class="btn-secondary">
+        <span>💻</span> GitHub 專案庫
+      </a>
+    </div>
+
+    <!-- Interactive App UI Mockup -->
+    <div class="mockup-container">
+      <div class="mockup-window-header">
+        <div class="window-dots">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-yellow"></div>
+          <div class="dot dot-green"></div>
+        </div>
+        <div class="window-title">MINE - Multiple Interface Next-gen Explorer (3 Windows Tile Mode)</div>
+        <div style="font-size: 0.8rem; color: #64748b; font-family: 'JetBrains Mono', monospace;">RAM: 24.8 MB</div>
+      </div>
+      <div class="mockup-toolbar">
+        <div class="mockup-tool-btn">⬅ 上一頁</div>
+        <div class="mockup-tool-btn">➡ 下一頁</div>
+        <div class="mockup-tool-btn">⬆ 上一層</div>
+        <div class="mockup-tool-btn active">➕ 新增子視窗</div>
+        <div class="mockup-tool-btn">⬌ 左右並排</div>
+        <div class="mockup-tool-btn">田 智慧網格</div>
+        <div class="mockup-tool-btn">🗗 重疊層疊</div>
+        <div class="mockup-tool-btn" style="margin-left: auto;">🔍 全域強化搜尋 (Ctrl+F)</div>
+      </div>
+
+      <!-- 3 Tiled Child Panes Mockup -->
+      <div class="mockup-panes-grid">
+        <!-- Pane 1: Code Project -->
+        <div class="mockup-pane active-pane">
+          <div class="pane-header active">
+            <span>📁 1: Web_Project</span>
+            <span>✕</span>
+          </div>
+          <div class="pane-addr-bar">C:\Projects\Web_Project</div>
+          <div class="pane-file-list">
+            <div class="file-row selected">
+              <div class="file-name"><span>📁</span> src</div>
+              <div class="file-size">目錄</div>
+            </div>
+            <div class="file-row">
+              <div class="file-name"><span>📄</span> Cargo.toml</div>
+              <div class="file-size">1.2 KB</div>
+            </div>
+            <div class="file-row">
+              <div class="file-name"><span>📄</span> README.md</div>
+              <div class="file-size">4.8 KB</div>
+            </div>
+            <div class="file-row">
+              <div class="file-name"><span>⚙️</span> build.sh</div>
+              <div class="file-size">820 B</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane 2: Safe HEIC Assets (Anti-crash Sandbox) -->
+        <div class="mockup-pane">
+          <div class="pane-header">
+            <span>📁 2: 2026_Photos</span>
+            <span>✕</span>
+          </div>
+          <div class="pane-addr-bar">D:\Assets\2026_Photos</div>
+          <div class="pane-file-list">
+            <div class="file-row">
+              <div class="file-name"><span>🖼️</span> IMG_0821.heic <span style="color:#10b981; font-size:0.65rem;">[🛡️沙盒]</span></div>
+              <div class="file-size">2.4 MB</div>
+            </div>
+            <div class="file-row">
+              <div class="file-name"><span>🖼️</span> IMG_0822.heic <span style="color:#10b981; font-size:0.65rem;">[🛡️沙盒]</span></div>
+              <div class="file-size">3.1 MB</div>
+            </div>
+            <div class="file-row">
+              <div class="file-name"><span>🎨</span> banner.webp</div>
+              <div class="file-size">840 KB</div>
+            </div>
+            <div class="file-row">
+              <div class="file-name"><span>📄</span> 特殊字編碼_測試.txt <span style="color:#38bdf8; font-size:0.65rem;">[UTF8]</span></div>
+              <div class="file-size">14 KB</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pane 3: Remote SMB Share (Non-blocking probe) -->
+        <div class="mockup-pane">
+          <div class="pane-header">
+            <span>📁 3: Team_NAS</span>
+            <span>✕</span>
+          </div>
+          <div class="pane-addr-bar">\\192.168.1.100\TeamShare</div>
+          <div class="pane-file-list">
+            <div class="file-row">
+              <div class="file-name"><span>📁</span> Design_Mockups</div>
+              <div class="file-size">目錄</div>
+            </div>
+            <div class="file-row">
+              <div class="file-name"><span>📦</span> release_v1.zip</div>
+              <div class="file-size">42.8 MB</div>
+            </div>
+            <div class="file-row">
+              <div class="file-name"><span>📊</span> 專案時程表.xlsx</div>
+              <div class="file-size">1.4 MB</div>
+            </div>
+            <div class="file-row" style="color:#10b981; font-size: 0.7rem; padding-top: 0.5rem;">
+              ⚡ 背景探測: 🟢 42ms 在線 (絕不卡死主視窗)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gesture Floating Overlay HUD Demo -->
+      <div class="gesture-indicator-demo">
+        <div class="gesture-arrow">➡</div>
+        <div class="gesture-text">
+          滑鼠右鍵手勢已辨識：前往下一頁 (Navigate Forward)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem vs Solution Comparison Table -->
+  <section id="comparison" class="section-container">
+    <div class="section-title">
+      <h2>解決原版 MDIE 與系統檔案總管的痛點</h2>
+      <p>結合 2026 最新 Rust 安全架構與 Win11 / Win10 / macOS 跨平台優勢</p>
+    </div>
+
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>功能與穩定性指標</th>
+            <th>Windows 10/11 內建總管</th>
+            <th>原版 MDIE (2007)</th>
+            <th class="col-mine">🚀 MINE (本專案)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>視窗並排彈性</strong></td>
+            <td>僅能單視窗分頁或貼齊2格</td>
+            <td>支援 MDI 多重視窗</td>
+            <td class="col-mine">無限制多視窗並排（左右、上下、網格、層疊任意組合）</td>
+          </tr>
+          <tr>
+            <td><strong>滑鼠右鍵手勢</strong></td>
+            <td>❌ 無支援</td>
+            <td>✅ 支援</td>
+            <td class="col-mine">✅ 霓虹軌跡 HUD 滑鼠手勢 + 右鍵滾輪極速跳轉</td>
+          </tr>
+          <tr>
+            <td><strong>特殊文字編碼資料夾</strong></td>
+            <td>容易出現路徑解析錯誤</td>
+            <td>💥 Win32 ANSI 溢位直接崩潰</td>
+            <td class="col-mine">🛡️ 全 UTF-8/Lossy 容錯隔離，任何亂碼絕不閃退</td>
+          </tr>
+          <tr>
+            <td><strong>.HEIC / 損毀圖檔預覽</strong></td>
+            <td>COM 元件偶爾當機</td>
+            <td>💥 呼叫 Shell 介面直接崩潰閃退</td>
+            <td class="col-mine">🛡️ 獨立執行緒沙盒保護 (`catch_unwind`)，永遠安全</td>
+          </tr>
+          <tr>
+            <td><strong>未連線 SMB 網路資料夾</strong></td>
+            <td>💀 同步重試卡死 30~60 秒</td>
+            <td>💀 主視窗直接無回應</td>
+            <td class="col-mine">⚡ 1.2 秒 TCP 快速逾時 + 獨立通道探測，零卡頓</td>
+          </tr>
+          <tr>
+            <td><strong>搜尋引擎效能</strong></td>
+            <td>速度緩慢且條件難下</td>
+            <td>單執行緒、容易漏檔</td>
+            <td class="col-mine">🚀 多執行緒支援模糊搜尋、>10MB 大小過濾、內文文字檢索與條件選取</td>
+          </tr>
+          <tr>
+            <td><strong>記憶體佔用</strong></td>
+            <td>> 200 MB ~ 1 GB</td>
+            <td>< 1 MB (Delphi)</td>
+            <td class="col-mine">~25-35 MB (純 Rust GUI，開 10+ 視窗依然輕巧如飛)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Core Features Grid -->
+  <section id="features" class="section-container" style="padding-top: 1rem;">
+    <div class="section-title">
+      <h2>為高效率工作者量身打造</h2>
+      <p>承襲 20 年前最順手的操作邏輯，注入 2026 最頂尖的系統架構</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">田</div>
+        <h3>無限制 MDI 多視窗並排</h3>
+        <p>打破雙欄檔案管理器的限制！同時開 3、4、6 個視窗並列或上下堆疊，跨資料夾拖拉、檔案移動比對一氣呵成，支援儲存多視窗工作區群組。</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🖱️</div>
+        <h3>MDIE 經典滑鼠手勢</h3>
+        <p>按住滑鼠右鍵劃出軌跡，瞬間上一頁、下一頁、關閉子視窗或並排排版。獨家支援右鍵按住＋滑鼠滾輪瞬間跳轉至清單開頭與結尾！</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>沙盒防崩潰與解碼防護</h3>
+        <p>遇到特殊的文字編碼資料夾絕不當機；點選 Apple HEIC/HEIF 高畫質照片或損毀圖檔時，獨立沙盒保證主程式永遠不閃退。</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>非阻塞式 SMB / NAS 連線</h3>
+        <p>家裡或公司的 NAS/網域不在身邊？MINE 的背景非同步探測引擎自動在 1.2 秒內判定離線狀態，不會讓您對著轉圈圈的畫面發呆 60 秒。</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>次世代極速搜尋與條件勾選</h3>
+        <p>支援多執行緒模糊拼字搜尋、大小過濾（如 `>10MB`）、副檔名（`ext:jpg,png`）與內文搜尋，更重現 MDIE 按 Enter 一鍵自動勾選所有符合項目的神技！</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🟢</div>
+        <h3>100% 綠色免安裝 / 隨身碟便攜</h3>
+        <p>所有設定與分頁紀錄完整儲存在同目錄下的 `mine_config.json`，不污染 Windows 登錄檔。亦附帶一鍵安裝至系統資料夾右鍵選單的便捷腳本。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mouse Gestures Showcase -->
+  <section id="gestures" class="section-container" style="padding-top: 1rem;">
+    <div class="section-title">
+      <h2>預設滑鼠手勢一覽 (按住右鍵拖曳)</h2>
+      <p>支援在設定介面自由自訂更多手勢組合與動作</p>
+    </div>
+
+    <div class="gesture-grid">
+      <div class="gesture-card">
+        <div class="gesture-symbol">←</div>
+        <div class="gesture-desc">
+          <h4>返回上一頁</h4>
+          <p>按住右鍵往左滑動</p>
+        </div>
+      </div>
+      <div class="gesture-card">
+        <div class="gesture-symbol">→</div>
+        <div class="gesture-desc">
+          <h4>前往下一頁</h4>
+          <p>按住右鍵往右滑動</p>
+        </div>
+      </div>
+      <div class="gesture-card">
+        <div class="gesture-symbol">↑</div>
+        <div class="gesture-desc">
+          <h4>回到上一層目錄</h4>
+          <p>按住右鍵往上滑動</p>
+        </div>
+      </div>
+      <div class="gesture-card">
+        <div class="gesture-symbol">↓</div>
+        <div class="gesture-desc">
+          <h4>開啟新並排視窗</h4>
+          <p>按住右鍵往下滑動</p>
+        </div>
+      </div>
+      <div class="gesture-card">
+        <div class="gesture-symbol">↓→</div>
+        <div class="gesture-desc">
+          <h4>關閉目前視窗</h4>
+          <p>按住右鍵先下後右 (L型)</p>
+        </div>
+      </div>
+      <div class="gesture-card">
+        <div class="gesture-symbol">↓←</div>
+        <div class="gesture-desc">
+          <h4>恢復已關閉視窗</h4>
+          <p>按住右鍵先下後左</p>
+        </div>
+      </div>
+      <div class="gesture-card">
+        <div class="gesture-symbol">↑←</div>
+        <div class="gesture-desc">
+          <h4>智慧網格並排</h4>
+          <p>按住右鍵先上後左</p>
+        </div>
+      </div>
+      <div class="gesture-card">
+        <div class="gesture-symbol">🖱️滾輪</div>
+        <div class="gesture-desc">
+          <h4>捲動至列表開頭/結尾</h4>
+          <p>按住右鍵同時滾動滾輪</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section with PIN Gate -->
+  <section id="download" class="download-section">
+    <div class="download-box">
+      <!-- Unlocked Status Banner -->
+      <div id="unlockedBanner" class="unlocked-banner">
+        <span>✅ 已通過身分驗證，所有下載連結已就緒！</span>
+        <button class="btn-relock" onclick="lockDownload()">重新鎖定 🔒</button>
+      </div>
+
+      <!-- PIN Lock View -->
+      <div id="pinLockView" class="pin-lock-container">
+        <div class="lock-icon">🔐</div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">MINE 下載中心安全驗證</h2>
+        <p class="pin-hint">請輸入存取 PIN 碼以解鎖下載（預設 PIN：<span class="code">8888</span>）</p>
+
+        <div class="pin-input-group" id="pinGroup">
+          <input type="password" maxlength="1" class="pin-digit" autofocus>
+          <input type="password" maxlength="1" class="pin-digit">
+          <input type="password" maxlength="1" class="pin-digit">
+          <input type="password" maxlength="1" class="pin-digit">
+        </div>
+
+        <button class="btn-unlock" onclick="verifyPin()">解鎖並顯示下載 🔓</button>
+        <p id="errorMsg" style="color: var(--danger); font-size: 0.88rem; margin-top: 1rem; display: none;">
+          ❌ PIN 碼錯誤，請重新輸入！
+        </p>
+      </div>
+
+      <!-- Unlocked Download Cards -->
+      <div id="downloadCardsView" class="download-grid">
+        <!-- Windows Card -->
+        <div class="download-card">
+          <div>
+            <div class="platform-header">
+              <div class="platform-icon">🪟</div>
+              <div>
+                <h3>Windows 10 / 11 (x64)</h3>
+                <span style="font-size: 0.75rem; color:#38bdf8;">綠色免安裝 ＋ 安裝腳本</span>
+              </div>
+            </div>
+            <div class="download-meta">
+              • 格式: ZIP 整合包 (2.5 MB)<br>
+              • 內含: <code>mine.exe</code> + 右鍵選單註冊腳本<br>
+              • 特色: 隨插即用，零系統依賴
+            </div>
+          </div>
+          <a href="downloads/MINE_Windows_x64_Portable_and_Installer.zip" class="btn-download-file">
+            <span>📥</span> 下載 Windows 整合包
+          </a>
+        </div>
+
+        <!-- macOS Card -->
+        <div class="download-card">
+          <div>
+            <div class="platform-header">
+              <div class="platform-icon">🍎</div>
+              <div>
+                <h3>macOS (Apple Silicon)</h3>
+                <span style="font-size: 0.75rem; color:#38bdf8;">M1 / M2 / M3 / M4 原生版</span>
+              </div>
+            </div>
+            <div class="download-meta">
+              • 格式: ZIP 封裝 (2.4 MB)<br>
+              • 內含: <code>mine</code> 原生執行檔 + 說明文件<br>
+              • 特色: 極致能效，瞬間啟動
+            </div>
+          </div>
+          <a href="downloads/MINE_macOS_ARM64_Portable.zip" class="btn-download-file">
+            <span>📥</span> 下載 macOS 原生版
+          </a>
+        </div>
+
+        <!-- Linux Card -->
+        <div class="download-card">
+          <div>
+            <div class="platform-header">
+              <div class="platform-icon">🐧</div>
+              <div>
+                <h3>Linux / 開放源碼</h3>
+                <span style="font-size: 0.75rem; color:#38bdf8;">跨發行版極速建置包</span>
+              </div>
+            </div>
+            <div class="download-meta">
+              • 格式: TAR.GZ 源碼包 (72 KB)<br>
+              • 支援: Ubuntu, Fedora, Arch 等<br>
+              • 一鍵建置: <code>cargo build --release</code>
+            </div>
+          </div>
+          <a href="downloads/MINE_Linux_Source.tar.gz" class="btn-download-file">
+            <span>📥</span> 下載 Linux 源碼包
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      🗂️ <strong>MINE (Multiple Interface Next-gen Explorer)</strong> — 2026 All Rights Reserved.<br>
+      專案專頁：<a href="https://aiohlala.github.io/MINE-Manager/">aiohlala.github.io/MINE-Manager/</a> ｜ 
+      個人主站：<a href="https://aiohlala.github.io/apps/">aiohlala.github.io/apps/</a>
+    </p>
+  </footer>
+
+  <!-- PIN Protection Logic -->
+  <script>
+    const CORRECT_PIN = "8888";
+    const pinDigits = document.querySelectorAll('.pin-digit');
+    const pinGroup = document.getElementById('pinGroup');
+    const errorMsg = document.getElementById('errorMsg');
+    const pinLockView = document.getElementById('pinLockView');
+    const downloadCardsView = document.getElementById('downloadCardsView');
+    const unlockedBanner = document.getElementById('unlockedBanner');
+
+    // Handle single digit inputs and auto-advance
+    pinDigits.forEach((digit, index) => {
+      digit.addEventListener('input', (e) => {
+        if (digit.value.length === 1 && index < pinDigits.length - 1) {
+          pinDigits[index + 1].focus();
+        }
+        if (getEnteredPin().length === 4) {
+          verifyPin();
+        }
+      });
+
+      digit.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && digit.value === '' && index > 0) {
+          pinDigits[index - 1].focus();
+        }
+        if (e.key === 'Enter') {
+          verifyPin();
+        }
+      });
+    });
+
+    function getEnteredPin() {
+      let pin = "";
+      pinDigits.forEach(d => pin += d.value);
+      return pin;
+    }
+
+    function verifyPin() {
+      const pin = getEnteredPin();
+      if (pin === CORRECT_PIN) {
+        sessionStorage.setItem('mine_pin_unlocked', 'true');
+        showUnlockedView();
+      } else {
+        errorMsg.style.display = 'block';
+        pinGroup.classList.add('shake');
+        setTimeout(() => {
+          pinGroup.classList.remove('shake');
+          pinDigits.forEach(d => d.value = "");
+          pinDigits[0].focus();
+        }, 400);
+      }
+    }
+
+    function showUnlockedView() {
+      pinLockView.style.display = 'none';
+      downloadCardsView.style.display = 'grid';
+      unlockedBanner.style.display = 'flex';
+      errorMsg.style.display = 'none';
+    }
+
+    function lockDownload() {
+      sessionStorage.removeItem('mine_pin_unlocked');
+      pinLockView.style.display = 'block';
+      downloadCardsView.style.display = 'none';
+      unlockedBanner.style.display = 'none';
+      pinDigits.forEach(d => d.value = "");
+      pinDigits[0].focus();
+    }
+
+    // Check if already unlocked in session
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('mine_pin_unlocked') === 'true') {
+        showUnlockedView();
+      }
+    });
+  </script>
+</body>
+</html>
