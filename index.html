@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MINE - Multiple Interface Next-gen Explorer | MDIE 現代化傳承者</title>
-  <meta name="description" content="致敬經典 MDIE 的新世代超輕量級多視窗與滑鼠手勢檔案總管。支援 Windows 10/11、macOS 與 Linux，免安裝綠色版，記憶體僅佔 25MB，徹底解決特殊編碼當機、HEIC 閃退與 SMB 卡死問題。">
+  <meta name="description" content="致敬經典 MDIE 的新世代超輕量級多視窗與滑鼠手勢檔案總管。採用現代純 Rust 記憶體安全架構與 GPU 硬體加速渲染，全面改良舊世代相容性與穩定度缺陷，深度適配 Windows 10/11、macOS 與 Linux。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -767,18 +767,18 @@
     </div>
     <h1>
       無限制多視窗並排・<span class="gradient">滑鼠手勢極速操作</span><br>
-      徹底告別系統崩潰與卡死
+      現代化核心架構，徹底告別舊世代限制
     </h1>
     <p>
-      致敬經典 MDIE（Multiple Document Interface Explorer），採用純 Rust 打造。<br>
-      單一免安裝執行檔僅 5 MB，開 10+ 個子視窗記憶體僅佔 25 MB。徹底解決特殊文字編碼閃退、HEIC 縮圖當機與 SMB 網路磁碟離線凍結。
+      致敬經典 MDIE（Multiple Document Interface Explorer），採用 2026 最新純 Rust 記憶體安全架構重新打造。<br>
+      單一免安裝執行檔僅約 5 MB，開 10+ 個子視窗記憶體僅佔約 25 MB。全面改良舊世代架構的穩定度與相容性缺陷，深度適配現代 64 位元作業系統與高解析度螢幕。
     </p>
     <div class="hero-cta">
       <a href="#download" class="btn-primary">
         <span>⚡</span> 前往下載中心 (解鎖下載)
       </a>
-      <a href="https://github.com/aiohlala/MINE" target="_blank" class="btn-secondary">
-        <span>💻</span> GitHub 專案庫
+      <a href="#features" class="btn-secondary">
+        <span>✨</span> 探索現代化技術特色
       </a>
     </div>
 
@@ -790,17 +790,19 @@
           <div class="dot dot-yellow"></div>
           <div class="dot dot-green"></div>
         </div>
-        <div class="window-title">MINE - Multiple Interface Next-gen Explorer (3 Windows Tile Mode)</div>
+        <div class="window-title">MINE - Multiple Interface Next-gen Explorer (Multi-Window Workspace)</div>
         <div style="font-size: 0.8rem; color: #64748b; font-family: 'JetBrains Mono', monospace;">RAM: 24.8 MB</div>
       </div>
       <div class="mockup-toolbar">
         <div class="mockup-tool-btn">⬅ 上一頁</div>
         <div class="mockup-tool-btn">➡ 下一頁</div>
         <div class="mockup-tool-btn">⬆ 上一層</div>
-        <div class="mockup-tool-btn active">➕ 新增子視窗</div>
+        <div class="mockup-tool-btn active">➕ 開新視窗</div>
         <div class="mockup-tool-btn">⬌ 左右並排</div>
         <div class="mockup-tool-btn">田 智慧網格</div>
-        <div class="mockup-tool-btn">🗗 重疊層疊</div>
+        <div class="mockup-tool-btn">◧ 左側欄</div>
+        <div class="mockup-tool-btn">◨ 預覽窗</div>
+        <div class="mockup-tool-btn">🌙 暗色 / ☀ 亮色</div>
         <div class="mockup-tool-btn" style="margin-left: auto;">🔍 全域強化搜尋 (Ctrl+F)</div>
       </div>
 
@@ -809,8 +811,8 @@
         <!-- Pane 1: Code Project -->
         <div class="mockup-pane active-pane">
           <div class="pane-header active">
-            <span>📁 1: Web_Project</span>
-            <span>✕</span>
+            <span>📁 [1] Web_Project</span>
+            <span>🗖 ✕</span>
           </div>
           <div class="pane-addr-bar">C:\Projects\Web_Project</div>
           <div class="pane-file-list">
@@ -827,61 +829,61 @@
               <div class="file-size">4.8 KB</div>
             </div>
             <div class="file-row">
-              <div class="file-name"><span>⚙️</span> build.sh</div>
+              <div class="file-name"><span>⚙</span> build.sh</div>
               <div class="file-size">820 B</div>
             </div>
           </div>
         </div>
 
-        <!-- Pane 2: Safe HEIC Assets (Anti-crash Sandbox) -->
+        <!-- Pane 2: Design Assets -->
         <div class="mockup-pane">
           <div class="pane-header">
-            <span>📁 2: 2026_Photos</span>
-            <span>✕</span>
+            <span>📁 [2] Design_Assets</span>
+            <span>🗖 ✕</span>
           </div>
-          <div class="pane-addr-bar">D:\Assets\2026_Photos</div>
+          <div class="pane-addr-bar">D:\Workspace\Design_Assets</div>
           <div class="pane-file-list">
             <div class="file-row">
-              <div class="file-name"><span>🖼️</span> IMG_0821.heic <span style="color:#10b981; font-size:0.65rem;">[🛡️沙盒]</span></div>
+              <div class="file-name"><span>📁</span> UI_Components</div>
+              <div class="file-size">目錄</div>
+            </div>
+            <div class="file-row">
+              <div class="file-name"><span>🖼</span> cover_banner.png</div>
               <div class="file-size">2.4 MB</div>
             </div>
             <div class="file-row">
-              <div class="file-name"><span>🖼️</span> IMG_0822.heic <span style="color:#10b981; font-size:0.65rem;">[🛡️沙盒]</span></div>
-              <div class="file-size">3.1 MB</div>
+              <div class="file-name"><span>🎨</span> theme_tokens.json</div>
+              <div class="file-size">18 KB</div>
             </div>
             <div class="file-row">
-              <div class="file-name"><span>🎨</span> banner.webp</div>
-              <div class="file-size">840 KB</div>
-            </div>
-            <div class="file-row">
-              <div class="file-name"><span>📄</span> 特殊字編碼_測試.txt <span style="color:#38bdf8; font-size:0.65rem;">[UTF8]</span></div>
+              <div class="file-name"><span>📄</span> typography_spec.md</div>
               <div class="file-size">14 KB</div>
             </div>
           </div>
         </div>
 
-        <!-- Pane 3: Remote SMB Share (Non-blocking probe) -->
+        <!-- Pane 3: Archive & Releases -->
         <div class="mockup-pane">
           <div class="pane-header">
-            <span>📁 3: Team_NAS</span>
-            <span>✕</span>
+            <span>📁 [3] Release_Builds</span>
+            <span>🗖 ✕</span>
           </div>
-          <div class="pane-addr-bar">\\192.168.1.100\TeamShare</div>
+          <div class="pane-addr-bar">E:\Releases\2026_Q4</div>
           <div class="pane-file-list">
             <div class="file-row">
-              <div class="file-name"><span>📁</span> Design_Mockups</div>
+              <div class="file-name"><span>📁</span> installers</div>
               <div class="file-size">目錄</div>
             </div>
             <div class="file-row">
-              <div class="file-name"><span>📦</span> release_v1.zip</div>
-              <div class="file-size">42.8 MB</div>
+              <div class="file-name"><span>📦</span> app_portable_x64.zip</div>
+              <div class="file-size">4.8 MB</div>
             </div>
             <div class="file-row">
-              <div class="file-name"><span>📊</span> 專案時程表.xlsx</div>
-              <div class="file-size">1.4 MB</div>
+              <div class="file-name"><span>📊</span> benchmark_report.csv</div>
+              <div class="file-size">640 KB</div>
             </div>
             <div class="file-row" style="color:#10b981; font-size: 0.7rem; padding-top: 0.5rem;">
-              ⚡ 背景探測: 🟢 42ms 在線 (絕不卡死主視窗)
+              ⚡ 非同步 I/O 引擎就緒 (支援八方向邊框自由縮放與跨視窗拖曳)
             </div>
           </div>
         </div>
@@ -900,62 +902,62 @@
   <!-- Problem vs Solution Comparison Table -->
   <section id="comparison" class="section-container">
     <div class="section-title">
-      <h2>解決原版 MDIE 與系統檔案總管的痛點</h2>
-      <p>結合 2026 最新 Rust 安全架構與 Win11 / Win10 / macOS 跨平台優勢</p>
+      <h2>經典操作傳承與現代化技術革新</h2>
+      <p>解決舊世代軟體架構缺陷，全面適配現代 64 位元作業系統與硬體環境</p>
     </div>
 
     <div class="table-card">
       <table>
         <thead>
           <tr>
-            <th>功能與穩定性指標</th>
-            <th>Windows 10/11 內建總管</th>
-            <th>原版 MDIE (2007)</th>
-            <th class="col-mine">🚀 MINE (本專案)</th>
+            <th>架構與體驗指標</th>
+            <th>系統內建檔案總管</th>
+            <th>舊世代 MDIE (2007)</th>
+            <th class="col-mine">🚀 MINE (新世代架構)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>視窗並排彈性</strong></td>
-            <td>僅能單視窗分頁或貼齊2格</td>
+            <td><strong>多視窗並排與縮放彈性</strong></td>
+            <td>僅限單視窗分頁或雙欄貼齊</td>
             <td>支援 MDI 多重視窗</td>
-            <td class="col-mine">無限制多視窗並排（左右、上下、網格、層疊任意組合）</td>
+            <td class="col-mine">無限制多視窗並排（左右、上下、智慧網格、八方向邊框自由拖曳縮放）</td>
           </tr>
           <tr>
-            <td><strong>滑鼠右鍵手勢</strong></td>
+            <td><strong>滑鼠右鍵手勢系統</strong></td>
             <td>❌ 無支援</td>
-            <td>✅ 支援</td>
-            <td class="col-mine">✅ 霓虹軌跡 HUD 滑鼠手勢 + 右鍵滾輪極速跳轉</td>
+            <td>✅ 支援基礎手勢</td>
+            <td class="col-mine">✅ 霓虹軌跡 HUD 即時手勢預覽 + 右鍵滾輪極速首尾跳轉 + 完整右鍵操作選單</td>
           </tr>
           <tr>
-            <td><strong>特殊文字編碼資料夾</strong></td>
-            <td>容易出現路徑解析錯誤</td>
-            <td>💥 Win32 ANSI 溢位直接崩潰</td>
-            <td class="col-mine">🛡️ 全 UTF-8/Lossy 容錯隔離，任何亂碼絕不閃退</td>
+            <td><strong>執行緒架構與防崩潰穩定度</strong></td>
+            <td>單一程序崩潰易影響系統桌面</td>
+            <td>舊式 32 位元同步呼叫易無回應</td>
+            <td class="col-mine">🛡️ 純 Rust 記憶體安全 + 非同步 I/O 執行緒池與獨立沙盒隔離，永不卡頓閃退</td>
           </tr>
           <tr>
-            <td><strong>.HEIC / 損毀圖檔預覽</strong></td>
-            <td>COM 元件偶爾當機</td>
-            <td>💥 呼叫 Shell 介面直接崩潰閃退</td>
-            <td class="col-mine">🛡️ 獨立執行緒沙盒保護 (`catch_unwind`)，永遠安全</td>
+            <td><strong>現代作業系統與顯示適配</strong></td>
+            <td>肥大耗資源、啟動延遲高</td>
+            <td>僅限舊版 32-bit Win32 API</td>
+            <td class="col-mine">✨ 原生 64-bit 跨平台架構、GPU 硬體加速渲染、4K High-DPI 自適應與一鍵深淺色主題</td>
           </tr>
           <tr>
-            <td><strong>未連線 SMB 網路資料夾</strong></td>
-            <td>💀 同步重試卡死 30~60 秒</td>
-            <td>💀 主視窗直接無回應</td>
-            <td class="col-mine">⚡ 1.2 秒 TCP 快速逾時 + 獨立通道探測，零卡頓</td>
+            <td><strong>系統磁碟與遠端資源整合</strong></td>
+            <td>同步阻塞式載入</td>
+            <td>舊式同步輪詢</td>
+            <td class="col-mine">⚡ 自動掛載讀取系統已設定之本機與遠端磁碟，搭配非同步逾時保護機制</td>
           </tr>
           <tr>
             <td><strong>搜尋引擎效能</strong></td>
-            <td>速度緩慢且條件難下</td>
-            <td>單執行緒、容易漏檔</td>
-            <td class="col-mine">🚀 多執行緒支援模糊搜尋、>10MB 大小過濾、內文文字檢索與條件選取</td>
+            <td>索引緩慢且語法繁瑣</td>
+            <td>單執行緒循序搜尋</td>
+            <td class="col-mine">🚀 多核心平行檢索（支援模糊比對、檔案大小過濾、內文檢索與條件一鍵勾選）</td>
           </tr>
           <tr>
-            <td><strong>記憶體佔用</strong></td>
+            <td><strong>資源與記憶體佔用</strong></td>
             <td>> 200 MB ~ 1 GB</td>
-            <td>< 1 MB (Delphi)</td>
-            <td class="col-mine">~25-35 MB (純 Rust GUI，開 10+ 視窗依然輕巧如飛)</td>
+            <td>輕量但缺乏現代擴充性</td>
+            <td class="col-mine">~25 MB 極致輕巧（開 10+ 視窗依然瞬開秒切，100% 綠色免安裝）</td>
           </tr>
         </tbody>
       </table>
@@ -965,45 +967,45 @@
   <!-- Core Features Grid -->
   <section id="features" class="section-container" style="padding-top: 1rem;">
     <div class="section-title">
-      <h2>為高效率工作者量身打造</h2>
-      <p>承襲 20 年前最順手的操作邏輯，注入 2026 最頂尖的系統架構</p>
+      <h2>新世代核心技術與現代系統適配</h2>
+      <p>承襲最順手的經典多視窗手勢操作，注入 2026 最先進的原生系統工程</p>
     </div>
 
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">田</div>
-        <h3>無限制 MDI 多視窗並排</h3>
-        <p>打破雙欄檔案管理器的限制！同時開 3、4、6 個視窗並列或上下堆疊，跨資料夾拖拉、檔案移動比對一氣呵成，支援儲存多視窗工作區群組。</p>
+        <h3>無限制 MDI 視窗與自由邊框縮放</h3>
+        <p>預設開啟清爽單一視窗，隨時可展開 2、3、4、6、9+ 個子視窗並排或重疊；每個子視窗皆支援八方向邊框與四角自由拖曳縮放大小，跨視窗左鍵拖曳即可瞬間移動或複製檔案。</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🖱️</div>
-        <h3>MDIE 經典滑鼠手勢</h3>
-        <p>按住滑鼠右鍵劃出軌跡，瞬間上一頁、下一頁、關閉子視窗或並排排版。獨家支援右鍵按住＋滑鼠滾輪瞬間跳轉至清單開頭與結尾！</p>
+        <h3>MDIE 經典滑鼠手勢與右鍵選單</h3>
+        <p>按住滑鼠右鍵劃出軌跡即可瞬間執行上一頁、下一頁、開關視窗或網格排版；原地點擊右鍵則彈出完整檔案操作選單，並支援按住右鍵＋滾輪極速捲動至清單首尾。</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🛡️</div>
-        <h3>沙盒防崩潰與解碼防護</h3>
-        <p>遇到特殊的文字編碼資料夾絕不當機；點選 Apple HEIC/HEIF 高畫質照片或損毀圖檔時，獨立沙盒保證主程式永遠不閃退。</p>
+        <h3>純 Rust 記憶體安全與非同步沙盒</h3>
+        <p>摒棄傳統舊式同步阻塞架構，全面採用 Rust 多執行緒非同步 I/O 與獨立沙盒防護機制，徹底改良舊世代軟體的閃退與無回應缺陷，任何高負載操作下主視窗永遠保持 60 FPS 流暢度。</p>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon">🌐</div>
-        <h3>非阻塞式 SMB / NAS 連線</h3>
-        <p>家裡或公司的 NAS/網域不在身邊？MINE 的背景非同步探測引擎自動在 1.2 秒內判定離線狀態，不會讓您對著轉圈圈的畫面發呆 60 秒。</p>
+        <div class="feature-icon">💻</div>
+        <h3>現代 64 位元作業系統與 4K DPI 適配</h3>
+        <p>專為現代 Windows 10/11、macOS (Apple Silicon) 與 Linux 打造。採用 GPU 向量字型渲染，完美支援高解析度 Retina / 4K 螢幕縮放，工具列內建暗色、亮色與經典主題一鍵切換。</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🔍</div>
-        <h3>次世代極速搜尋與條件勾選</h3>
-        <p>支援多執行緒模糊拼字搜尋、大小過濾（如 `>10MB`）、副檔名（`ext:jpg,png`）與內文搜尋，更重現 MDIE 按 Enter 一鍵自動勾選所有符合項目的神技！</p>
+        <h3>多核心平行檢索與條件自動勾選</h3>
+        <p>內建多執行緒極速搜尋引擎，支援模糊拼字、檔案大小區間（如 `>10MB`）、副檔名篩選與檔案內文檢索，並重現按 Enter 一鍵自動勾選所有相符檔案的經典高效能操作。</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🟢</div>
-        <h3>100% 綠色免安裝 / 隨身碟便攜</h3>
-        <p>所有設定與分頁紀錄完整儲存在同目錄下的 `mine_config.json`，不污染 Windows 登錄檔。亦附帶一鍵安裝至系統資料夾右鍵選單的便捷腳本。</p>
+        <h3>系統磁碟自動整合與 100% 綠色便攜</h3>
+        <p>自動偵測並整合系統檔案總管已設定之本機分割區與遠端網路資料夾，免去重複設定的繁瑣。所有個人化配置皆儲存於單一可攜式 JSON，隨身碟隨插即用。</p>
       </div>
     </div>
   </section>
