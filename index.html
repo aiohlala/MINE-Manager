@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MINE - Multiple Interface Next-gen Explorer | MDIE 現代化傳承者</title>
-  <meta name="description" content="致敬經典 MDIE 的新世代超輕量級多視窗與滑鼠手勢檔案總管。採用現代純 Rust 記憶體安全架構與 GPU 硬體加速渲染，全面改良舊世代相容性與穩定度缺陷，深度適配 Windows 10/11、macOS 與 Linux。">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='22' fill='%23EBF5FF' stroke='%235EA0E6' stroke-width='4'/%3E%3Crect x='26' y='16' width='56' height='46' rx='10' fill='%23FFF5F8' stroke='%2334435E' stroke-width='3.5'/%3E%3Crect x='26' y='16' width='56' height='12' rx='6' fill='%23FFBDD2' stroke='%2334435E' stroke-width='3'/%3E%3Ccircle cx='35' cy='22' r='2.3' fill='%23FFF'/%3E%3Ccircle cx='43' cy='22' r='2.3' fill='%23FFF'/%3E%3Cpath d='M20 44 L23 26 L39 38 Z' fill='%23FFD75A' stroke='%2334435E' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M23 41 L25 30 L35 38 Z' fill='%23FFA5BE'/%3E%3Cpath d='M57 38 L73 26 L76 44 Z' fill='%23FFD75A' stroke='%2334435E' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M61 38 L71 30 L73 41 Z' fill='%23FFA5BE'/%3E%3Crect x='16' y='36' width='64' height='48' rx='12' fill='%23FFE887' stroke='%2334435E' stroke-width='3.8'/%3E%3Ccircle cx='35' cy='58' r='3.6' fill='%2334435E'/%3E%3Ccircle cx='34' cy='56.8' r='1.3' fill='%23FFF'/%3E%3Ccircle cx='61' cy='58' r='3.6' fill='%2334435E'/%3E%3Ccircle cx='60' cy='56.8' r='1.3' fill='%23FFF'/%3E%3Cellipse cx='26' cy='63' rx='4.8' ry='2.8' fill='%23FF91AF'/%3E%3Cellipse cx='70' cy='63' rx='4.8' ry='2.8' fill='%23FF91AF'/%3E%3Cpath d='M42 62 Q45 66 48 62 Q51 66 54 62' fill='none' stroke='%2334435E' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M79 67 L81.5 73.5 L88 76 L81.5 78.5 L79 85 L76.5 78.5 L70 76 L76.5 73.5 Z' fill='%2328C8F0' stroke='%23FFF' stroke-width='1.5'/%3E%3C/svg%3E">
+  <meta name="description"
+    content="致敬經典 MDIE 的新世代超輕量級多視窗與滑鼠手勢檔案總管。採用現代純 Rust 記憶體安全架構與 GPU 硬體加速渲染，全面改良舊世代相容性與穩定度缺陷，深度適配 Windows 10/11、macOS 與 Linux。">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='22' fill='%23EBF5FF' stroke='%235EA0E6' stroke-width='4'/%3E%3Crect x='26' y='16' width='56' height='46' rx='10' fill='%23FFF5F8' stroke='%2334435E' stroke-width='3.5'/%3E%3Crect x='26' y='16' width='56' height='12' rx='6' fill='%23FFBDD2' stroke='%2334435E' stroke-width='3'/%3E%3Ccircle cx='35' cy='22' r='2.3' fill='%23FFF'/%3E%3Ccircle cx='43' cy='22' r='2.3' fill='%23FFF'/%3E%3Cpath d='M20 44 L23 26 L39 38 Z' fill='%23FFD75A' stroke='%2334435E' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M23 41 L25 30 L35 38 Z' fill='%23FFA5BE'/%3E%3Cpath d='M57 38 L73 26 L76 44 Z' fill='%23FFD75A' stroke='%2334435E' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M61 38 L71 30 L73 41 Z' fill='%23FFA5BE'/%3E%3Crect x='16' y='36' width='64' height='48' rx='12' fill='%23FFE887' stroke='%2334435E' stroke-width='3.8'/%3E%3Ccircle cx='35' cy='58' r='3.6' fill='%2334435E'/%3E%3Ccircle cx='34' cy='56.8' r='1.3' fill='%23FFF'/%3E%3Ccircle cx='61' cy='58' r='3.6' fill='%2334435E'/%3E%3Ccircle cx='60' cy='56.8' r='1.3' fill='%23FFF'/%3E%3Cellipse cx='26' cy='63' rx='4.8' ry='2.8' fill='%23FF91AF'/%3E%3Cellipse cx='70' cy='63' rx='4.8' ry='2.8' fill='%23FF91AF'/%3E%3Cpath d='M42 62 Q45 66 48 62 Q51 66 54 62' fill='none' stroke='%2334435E' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M79 67 L81.5 73.5 L88 76 L81.5 78.5 L79 85 L76.5 78.5 L70 76 L76.5 73.5 Z' fill='%2328C8F0' stroke='%23FFF' stroke-width='1.5'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --primary: #0284c7;
@@ -233,9 +238,18 @@
       height: 12px;
       border-radius: 50%;
     }
-    .dot-red { background: #ef4444; }
-    .dot-yellow { background: #f59e0b; }
-    .dot-green { background: #10b981; }
+
+    .dot-red {
+      background: #ef4444;
+    }
+
+    .dot-yellow {
+      background: #f59e0b;
+    }
+
+    .dot-green {
+      background: #10b981;
+    }
 
     .window-title {
       font-size: 0.88rem;
@@ -335,7 +349,8 @@
       color: #cbd5e1;
     }
 
-    .file-row:hover, .file-row.selected {
+    .file-row:hover,
+    .file-row.selected {
       background: rgba(2, 132, 199, 0.25);
       color: #fff;
     }
@@ -371,8 +386,15 @@
     }
 
     @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); }
-      50% { box-shadow: 0 0 25px rgba(6, 182, 212, 0.6); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 0 25px rgba(6, 182, 212, 0.6);
+      }
     }
 
     .gesture-arrow {
@@ -625,9 +647,21 @@
     }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-8px); }
-      40%, 80% { transform: translateX(8px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20%,
+      60% {
+        transform: translateX(-8px);
+      }
+
+      40%,
+      80% {
+        transform: translateX(8px);
+      }
     }
 
     /* Unlocked Downloads Display */
@@ -737,12 +771,21 @@
     }
 
     @media (max-width: 868px) {
-      .hero h1 { font-size: 2.25rem; }
-      .mockup-panes-grid { grid-template-columns: 1fr; }
-      .download-box { padding: 2.5rem 1.5rem; }
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      .mockup-panes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .download-box {
+        padding: 2.5rem 1.5rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Top Header Navigation -->
@@ -751,24 +794,28 @@
       <a href="#" class="logo-badge">
         <div class="logo-icon" style="background: transparent; box-shadow: none; width: 42px; height: 42px;">
           <svg viewBox="0 0 100 100" width="42" height="42" xmlns="http://www.w3.org/2000/svg">
-            <rect x="6" y="6" width="88" height="88" rx="22" fill="#EBF5FF" stroke="#5EA0E6" stroke-width="4"/>
-            <rect x="26" y="16" width="56" height="46" rx="10" fill="#FFF5F8" stroke="#34435E" stroke-width="3.5"/>
-            <rect x="26" y="16" width="56" height="12" rx="6" fill="#FFBDD2" stroke="#34435E" stroke-width="3"/>
-            <circle cx="35" cy="22" r="2.3" fill="#FFF"/>
-            <circle cx="43" cy="22" r="2.3" fill="#FFF"/>
-            <path d="M20 44 L23 26 L39 38 Z" fill="#FFD75A" stroke="#34435E" stroke-width="3.5" stroke-linejoin="round"/>
-            <path d="M23 41 L25 30 L35 38 Z" fill="#FFA5BE"/>
-            <path d="M57 38 L73 26 L76 44 Z" fill="#FFD75A" stroke="#34435E" stroke-width="3.5" stroke-linejoin="round"/>
-            <path d="M61 38 L71 30 L73 41 Z" fill="#FFA5BE"/>
-            <rect x="16" y="36" width="64" height="48" rx="12" fill="#FFE887" stroke="#34435E" stroke-width="3.8"/>
-            <circle cx="35" cy="58" r="3.6" fill="#34435E"/>
-            <circle cx="34" cy="56.8" r="1.3" fill="#FFF"/>
-            <circle cx="61" cy="58" r="3.6" fill="#34435E"/>
-            <circle cx="60" cy="56.8" r="1.3" fill="#FFF"/>
-            <ellipse cx="26" cy="63" rx="4.8" ry="2.8" fill="#FF91AF"/>
-            <ellipse cx="70" cy="63" rx="4.8" ry="2.8" fill="#FF91AF"/>
-            <path d="M42 62 Q45 66 48 62 Q51 66 54 62" fill="none" stroke="#34435E" stroke-width="3" stroke-linecap="round"/>
-            <path d="M79 67 L81.5 73.5 L88 76 L81.5 78.5 L79 85 L76.5 78.5 L70 76 L76.5 73.5 Z" fill="#28C8F0" stroke="#FFF" stroke-width="1.5"/>
+            <rect x="6" y="6" width="88" height="88" rx="22" fill="#EBF5FF" stroke="#5EA0E6" stroke-width="4" />
+            <rect x="26" y="16" width="56" height="46" rx="10" fill="#FFF5F8" stroke="#34435E" stroke-width="3.5" />
+            <rect x="26" y="16" width="56" height="12" rx="6" fill="#FFBDD2" stroke="#34435E" stroke-width="3" />
+            <circle cx="35" cy="22" r="2.3" fill="#FFF" />
+            <circle cx="43" cy="22" r="2.3" fill="#FFF" />
+            <path d="M20 44 L23 26 L39 38 Z" fill="#FFD75A" stroke="#34435E" stroke-width="3.5"
+              stroke-linejoin="round" />
+            <path d="M23 41 L25 30 L35 38 Z" fill="#FFA5BE" />
+            <path d="M57 38 L73 26 L76 44 Z" fill="#FFD75A" stroke="#34435E" stroke-width="3.5"
+              stroke-linejoin="round" />
+            <path d="M61 38 L71 30 L73 41 Z" fill="#FFA5BE" />
+            <rect x="16" y="36" width="64" height="48" rx="12" fill="#FFE887" stroke="#34435E" stroke-width="3.8" />
+            <circle cx="35" cy="58" r="3.6" fill="#34435E" />
+            <circle cx="34" cy="56.8" r="1.3" fill="#FFF" />
+            <circle cx="61" cy="58" r="3.6" fill="#34435E" />
+            <circle cx="60" cy="56.8" r="1.3" fill="#FFF" />
+            <ellipse cx="26" cy="63" rx="4.8" ry="2.8" fill="#FF91AF" />
+            <ellipse cx="70" cy="63" rx="4.8" ry="2.8" fill="#FF91AF" />
+            <path d="M42 62 Q45 66 48 62 Q51 66 54 62" fill="none" stroke="#34435E" stroke-width="3"
+              stroke-linecap="round" />
+            <path d="M79 67 L81.5 73.5 L88 76 L81.5 78.5 L79 85 L76.5 78.5 L70 76 L76.5 73.5 Z" fill="#28C8F0"
+              stroke="#FFF" stroke-width="1.5" />
           </svg>
         </div>
         <span>MINE</span>
@@ -990,7 +1037,7 @@
   <section id="features" class="section-container" style="padding-top: 1rem;">
     <div class="section-title">
       <h2>新世代核心技術與現代系統適配</h2>
-      <p>承襲最順手的經典多視窗手勢操作，注入 2026 最先進的原生系統工程</p>
+      <p>承襲最順手的經典多視窗手勢操作，注入最先進的原生系統工程</p>
     </div>
 
     <div class="features-grid">
@@ -1015,7 +1062,8 @@
       <div class="feature-card">
         <div class="feature-icon">💻</div>
         <h3>現代 64 位元作業系統與 4K DPI 適配</h3>
-        <p>專為現代 Windows 10/11、macOS (Apple Silicon) 與 Linux 打造。採用 GPU 向量字型渲染，完美支援高解析度 Retina / 4K 螢幕縮放，工具列內建暗色、亮色與經典主題一鍵切換。</p>
+        <p>專為現代 Windows 10/11、macOS (Apple Silicon) 與 Linux 打造。採用 GPU 向量字型渲染，完美支援高解析度 Retina / 4K
+          螢幕縮放，工具列內建暗色、亮色與經典主題一鍵切換。</p>
       </div>
 
       <div class="feature-card">
@@ -1136,18 +1184,18 @@
               <div class="platform-icon">🪟</div>
               <div>
                 <h3>Windows 10 / 11 (x64)</h3>
-                <span style="font-size: 0.75rem; color:#38bdf8;">v1.1.2 綠色免安裝 ＋ 安裝腳本</span>
+                <span style="font-size: 0.75rem; color:#38bdf8;">v1.1.3 綠色免安裝 ＋ 安裝腳本</span>
               </div>
             </div>
             <div class="download-meta">
               • 格式: ZIP 整合包 (3.4 MB)<br>
-              • 檔案: <code>MINE_v1.1.2_Windows_x64.zip</code><br>
-              • 內含: <code>MINE_v1.1.2/mine.exe</code> + 乾淨安裝/解除安裝腳本<br>
+              • 檔案: <code>MINE_v1.1.3_Windows_x64.zip</code><br>
+              • 內含: <code>MINE_v1.1.3/mine.exe</code> + 乾淨安裝/解除安裝腳本<br>
               • 特色: 隨插即用，零系統依賴
             </div>
           </div>
-          <a href="downloads/MINE_v1.1.2_Windows_x64.zip?v=1.1.2" class="btn-download-file">
-            <span>📥</span> 下載 Windows 整合包 (v1.1.2)
+          <a href="downloads/MINE_v1.1.3_Windows_x64.zip?v=1.1.3" class="btn-download-file">
+            <span>📥</span> 下載 Windows 整合包 (v1.1.3)
           </a>
         </div>
 
@@ -1158,18 +1206,18 @@
               <div class="platform-icon">🍎</div>
               <div>
                 <h3>macOS (Apple Silicon)</h3>
-                <span style="font-size: 0.75rem; color:#38bdf8;">v1.1.2 M1 / M2 / M3 / M4 原生版</span>
+                <span style="font-size: 0.75rem; color:#38bdf8;">v1.1.3 M1 / M2 / M3 / M4 原生版</span>
               </div>
             </div>
             <div class="download-meta">
               • 格式: ZIP 封裝 (3.2 MB)<br>
-              • 檔案: <code>MINE_v1.1.2_macOS_ARM64.zip</code><br>
+              • 檔案: <code>MINE_v1.1.3_macOS_ARM64.zip</code><br>
               • 內含: <code>MINE.app</code> 原生應用程式<br>
               • 特色: 極致能效，瞬間啟動
             </div>
           </div>
-          <a href="downloads/MINE_v1.1.2_macOS_ARM64.zip?v=1.1.2" class="btn-download-file">
-            <span>📥</span> 下載 macOS 原生版 (v1.1.2)
+          <a href="downloads/MINE_v1.1.3_macOS_ARM64.zip?v=1.1.3" class="btn-download-file">
+            <span>📥</span> 下載 macOS 原生版 (v1.1.3)
           </a>
         </div>
 
@@ -1180,18 +1228,18 @@
               <div class="platform-icon">🐧</div>
               <div>
                 <h3>Linux / 開放源碼</h3>
-                <span style="font-size: 0.75rem; color:#38bdf8;">v1.1.2 跨發行版極速建置包</span>
+                <span style="font-size: 0.75rem; color:#38bdf8;">v1.1.3 跨發行版極速建置包</span>
               </div>
             </div>
             <div class="download-meta">
-              • 格式: TAR.GZ 源碼包 (613 KB)<br>
-              • 檔案: <code>MINE_v1.1.2_Linux_Source.tar.gz</code><br>
+              • 格式: TAR.GZ 源碼包 (615 KB)<br>
+              • 檔案: <code>MINE_v1.1.3_Linux_Source.tar.gz</code><br>
               • 支援: Ubuntu, Fedora, Arch 等<br>
               • 一鍵建置: <code>cargo build --release</code>
             </div>
           </div>
-          <a href="downloads/MINE_v1.1.2_Linux_Source.tar.gz?v=1.1.2" class="btn-download-file">
-            <span>📥</span> 下載 Linux 源碼包 (v1.1.2)
+          <a href="downloads/MINE_v1.1.3_Linux_Source.tar.gz?v=1.1.3" class="btn-download-file">
+            <span>📥</span> 下載 Linux 源碼包 (v1.1.3)
           </a>
         </div>
       </div>
@@ -1202,7 +1250,7 @@
   <footer>
     <p>
       🗂️ <strong>MINE (Multiple Interface Next-gen Explorer)</strong> — 2026 All Rights Reserved.<br>
-      專案專頁：<a href="https://aiohlala.github.io/MINE-Manager/">aiohlala.github.io/MINE-Manager/</a> ｜ 
+      專案專頁：<a href="https://aiohlala.github.io/MINE-Manager/">aiohlala.github.io/MINE-Manager/</a> ｜
       個人主站：<a href="https://aiohlala.github.io/apps/">aiohlala.github.io/apps/</a>
     </p>
   </footer>
@@ -1284,4 +1332,5 @@
     });
   </script>
 </body>
+
 </html>
